@@ -53,4 +53,18 @@ var superheroList = [
     group: "DC",
     img: "img/supergirl.jpg"
   }
-]
+];
+
+
+(function (){
+  angular
+  .module("superheroes", [])
+  .controller("hero_controller", heroController);
+
+  function heroController(){
+    var vm = this;
+    vm.data = superheroList;
+  }
+
+
+})();

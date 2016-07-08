@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-ng-app="superheroes">
 <head>
   <meta charset="utf-8">
   <title>Superhero Phonebook</title>
@@ -12,20 +12,22 @@
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="js/app.js"></script>
 </head>
-<body>
+<body data-ng-controller="hero_controller as vm">
   <h1>Superheroes</h1>
   <div class="picture">
-    Picture:
+    Picture: <img data-ng-src="{{vm.image}}" alt="#" />
   </div>
   <div class="search">
-    Search:
+    <input data-ng-model="vm.search" type="text" class="form-control" placeholder="Search..." />
   </div>
   <table class="table">
     <thead>
-      <tr>
-        <th>Name:</th>
-        <th>Number:</th>
-        <th></th>
+      <tr data-ng-repeat="hero in vm.data | filter: vm.search" class="{{hero.group | lowercase}}">
+        <th><button ng-click="vm.image=hero.img"></button></th>
+        <th>Name: {{hero.name}}</th>
+        <th>Number: {{hero.number}} </th>
+
+      <th></th>
       </tr>
     </thead>
     <tbody>
